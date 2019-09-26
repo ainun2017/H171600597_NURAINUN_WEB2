@@ -53,11 +53,5 @@ public function captchaValidate(Request $request)
         return response()->json(['captcha'=> captcha_img()]);
 
     }
-    protected function credentials(Request $request)
-{
-    if(is_numeric($request->get('email'))){
-        return ['phone'=>$request->get('email'),'password'=>$request->get('password')];
-    }
-    return $request->only($this->username(), 'password');
-    }
+    
 }
