@@ -59,6 +59,14 @@ Route::get('/berita/{id}','BeritaController@show')->name('berita.show');
 
 
 Auth::routes();
+Route::get('/galeri','GaleriController@index')->name('galeri.index');
+Route::get('/galeri/create','GaleriController@create')->name('galeri.create');
+Route::post('/galeri','GaleriController@store')->name('galeri.store');
+Route::get('/galeri/{id}','GaleriController@show')->name('galeri.show');
+
+
+
+Auth::routes();
 Route::get('/kategori_galeri','KategoriGaleriController@index')->name('kategori_galeri.index');
 Route::get('/kategori_galeri/create','KategoriGaleriController@create')->name('kategori_galeri.create');
 Route::post('/kategori_galeri','KategoriGaleriController@store')->name('kategori_galeri.store');

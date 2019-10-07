@@ -16,11 +16,11 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="kategori_artikel_id" class="col-md-2 col-form-label text-md-right">{{ __('Kategori') }}</label>
+                            <label for="kategori_berita_id" class="col-md-2 col-form-label text-md-right">{{ __('Berita') }}</label>
                             <div class="col-md-10">
-                            {!! Form::select('kategori_artikel_id',$KategoriArtikel,null,["class"=>"form-control","required"]); !!}
+                            {!! Form::select('kategori_berita_id',$KategoriBerita,null,["class"=>"form-control","required"]); !!}
 
-                                @error('kategori_artikel
+                                @error('kategori_berita
                                 _id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -59,8 +59,9 @@
                                 </button>
                             </div>
                         </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-6">
-                                <a href="{!! route('artikel.index') !!}" class="btn btn-danger">Batal</a>
+                                <a href="{!! route('berita.index') !!}" class="btn btn-danger">Batal</a>
                             </div>
                         </div>
