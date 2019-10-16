@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\ AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 
 class LoginController extends Controller
@@ -37,21 +37,17 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    public function username() {
+    	return 'phone';
+    }
 
-public function captchaValidate(Request $request)
+
+public function validateLogin(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required|digits:12|unique:users',
+            $this->username() => 'required|string',
             'password' => 'required|min:6',
-            'captcha' => 'required|captcha'
+            'captcha' => 'required|captcha',
         ]);
     }
-    public function refreshCaptcha()
-    {
-        return response()->json(['captcha'=> captcha_img()]);
-
-    }
-    
 }

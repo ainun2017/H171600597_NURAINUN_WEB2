@@ -8,9 +8,9 @@
 			<div class="card">
 				<div class="card-header">galeri</div>
 					<div class="card-body">
-						<form method="POST" action="{!! route('galeri.store') !!}">
-							@include('galeri.form');
-						</form>
+						  {!! Form::open(['route' => 'galeri.store', 'method' => 'post']) !!}
+                            @include('galeri.form')
+                       {!! Form::close() !!}
 					</div>
 				</div>
 			</div>

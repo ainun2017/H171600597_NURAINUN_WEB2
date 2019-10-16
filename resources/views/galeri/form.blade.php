@@ -5,7 +5,8 @@
                             <label for="nama" class="col-md-2 col-form-label text-md-right">{{ __('Nama') }}</label>
 
                             <div class="col-md-10">
-                                <input id="nama" type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ old('nama') }}" required autocomplete="nama" autofocus>
+                               {!! Form::text('nama',null,['class'=>"form-control",'required','autofocus']); !!}
+
 
                                 @error('nama')
                                     <span class="invalid-feedback" role="alert">

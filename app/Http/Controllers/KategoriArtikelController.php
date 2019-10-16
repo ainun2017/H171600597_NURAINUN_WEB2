@@ -30,4 +30,28 @@ class KategoriArtikelController extends Controller
       return redirect(route('kategori_artikel.index'));
     }
 
-}
+
+    public function edit($id){
+		$KategoriArtikel = \App\KategoriArtikel::find($id);
+
+		return view('kategori_artikel.edit', compact('KategoriArtikel'));
+
+
+	}
+	public function update($id, Request $request){
+		$KategoriArtikel = \App\KategoriArtikel::find($id);
+		$input=$request->all();
+
+		$KategoriArtikel->update($input);
+
+		return redirect(route('kategori_artikel.index'));
+	}
+
+	public function destroy($id){
+		$KategoriArtikel = \App\KategoriArtikel::find($id);
+
+		$KategoriArtikel->delete();
+
+		return redirect(route('kategori_artikel.index'));
+	}
+ }

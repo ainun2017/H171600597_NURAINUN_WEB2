@@ -29,4 +29,28 @@ class KategoriPengumumanController extends Controller
     	KategoriPengumuman::create($input);
     	return redirect(route('kategori_pengumuman.index'));
     }
-}
+
+    public function edit($id){
+		$KategoriPengumuman = \App\KategoriPengumuman::find($id);
+
+		return view('kategori_pengumuman.edit', compact('KategoriPengumuman'));
+
+
+	}
+	public function update($id, Request $request){
+		$KategoriPengumuman = KategoriPengumuman::find($id);
+		$input=$request->all();
+
+		$KategoriPengumuman->update($input);
+
+		return redirect(route('kategori_pengumuman.index'));
+	}
+
+	public function destroy($id){
+		$KategoriPengumuman = \App\KategoriPengumuman::find($id);
+
+		$KategoriPengumuman->delete();
+
+		return redirect(route('kategori_pengumuman.index'));
+	}
+ }

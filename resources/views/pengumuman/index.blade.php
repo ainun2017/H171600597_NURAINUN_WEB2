@@ -29,8 +29,12 @@
                         <td>{!! $item->users_id !!}</td>
                         <td>{!! $item->created_at->format('d/m/Y H:i:s') !!}</td>
                         <td>
-                            <a href ="index.php?p=tang" button class="btn btn-danger" type="button"> Hapus </button></a> 
+                     
                             <a href="{!! route('pengumuman.show',[$item-> id]) !!}" button class="btn btn-success">Lihat</a>
+                            <a href="{!! route('pengumuman.edit',[$item->id]) !!}" class="btn btn-sm btn-warning"> Ubah </a>
+						{!! Form::open(['route' => ['pengumuman.destroy', $item->id],'method'=>'delete']) !!}
+						{!! Form::submit('Hapus',['class'=>"btn btn-sm btn-danger"]); !!}
+						{!! Form::close() !!}
                         </td>
                         </tr>
 	

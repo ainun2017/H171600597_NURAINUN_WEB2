@@ -24,7 +24,7 @@ class ArtikelController extends Controller
 
     public function create(){
 
-        $KategoriArtikel= \App\KategoriArtikel::pluck ('nama','id');
+        $KategoriArtikel= KategoriArtikel::pluck ('nama','id');
 
         return view('artikel.create',compact('KategoriArtikel'));
     }
@@ -34,5 +34,27 @@ class ArtikelController extends Controller
        return redirect(route('artikel.index'));
        
     }
-    
-}  
+
+     public function edit($id){
+		$Artikel = \App\Artikel::find($id);
+		$KategoriArtikel= KategoriArtikel::pluck ('nama','id');
+
+		return view('artikel.edit', compact('Artikel', 'KategoriArtikel'));
+	}
+	public function update($id, Request $request){
+		$Artikel = \App\Artikel::find($id);
+		$input=$request->all();
+
+		$Artikel->update($input);
+
+		return redirect(route('artikel.index'));
+	}
+
+	public function destroy($id){
+		$Artikel = \App\Artikel::find($id);
+
+		$Artikel->delete();
+
+		return redirect(route('artikel.index'));
+	}
+    }  

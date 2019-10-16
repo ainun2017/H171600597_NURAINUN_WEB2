@@ -23,6 +23,10 @@
 					<td> {!! $item-> created_at !!} </td>
 					<td>
 						<a href="{!! route('kategori_galeri.show',[$item->id]) !!}" class="btn btn-sm btn-success"> Lihat </a>
+						<a href="{!! route('kategori_galeri.edit',[$item->id]) !!}" class="btn btn-sm btn-warning"> Ubah </a>
+						{!! Form::open(['route' => ['kategori_galeri.destroy', $item->id],'method'=>'delete']) !!}
+						{!! Form::submit('Hapus',['class'=>"btn btn-sm btn-danger"]); !!}
+						{!! Form::close() !!}
 					</td>
 </tr>
 @endforeach 	

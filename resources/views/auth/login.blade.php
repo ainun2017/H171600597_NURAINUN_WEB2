@@ -12,12 +12,12 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('phone Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
 
-                                @error('email')
+                                @error('phone')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -32,6 +32,28 @@
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                                 @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="captcha" class="col-md-4 col-form-label text-md-right">{{ __('Captcha') }}</label>
+                            <div class="col-md-4">
+                                <img src="{{ captcha_src() }}" alt="captcha" id="captcha_img">
+                            </div>
+                            <div class="col-md-2">
+                                <a href="javascript:void(0)" class="btn btn-link" id="captcha_refresh">
+                                    {{ __('Refresh') }}
+                                </a>
+                            </div>
+                         </div>
+                            <div class="form-group row">
+                            <div class="offset-md-4 col-md-6">
+                                <input id="captcha" type="text" class="form-control @error('captcha') is-invalid @enderror" name="captcha" required>
+                                @error('captcha')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -70,4 +92,23 @@
         </div>
     </div>
 </div>
+
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+<script>
+    $(function() {
+        $('#captcha_refresh').click(function (e) {
+            e.preventDefault();
+            $.ajax({
+                method: 'GET',
+                url: '/refresh-captcha',
+            }).done(function (img) {
+                $('#captcha_img').attr('src', img);
+            });
+        });
+    });
+</script>
 @endsection
